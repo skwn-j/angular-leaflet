@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LeafletMapService } from './leaflet-map.service';
 import * as L from 'leaflet';
+
 
 @Component({
   selector: 'app-root',
@@ -11,16 +13,13 @@ export class AppComponent implements OnInit {
   center: L.LatLng;
   fitBounds: L.LatLngBounds;
   baseLayers: L.TileLayer[];
-  constructor() {
+  map: L.Map;
+  constructor(private leafletMapService: LeafletMapService) {
 
   }
 
   ngOnInit() {
-    const map = L.map('map').setView([51.505, -0.09], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-}
-
+    //create map
+    this.map = this.leafletMapService.createMap();
+  }
 }
