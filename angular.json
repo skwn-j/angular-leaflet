@@ -87,7 +87,8 @@
             "scripts": [
               "node_modules/leaflet/dist/leaflet.js",
               "node_modules/pixi.js/dist/pixi.min.js",
-              "node_modules/leaflet-pixi-overlay/L.PixiOverlay.min.js"
+              "node_modules/leaflet-pixi-overlay/L.PixiOverlay.min.js",
+              "node_modules/file-system/file-system.js"
             ],
             "assets": [
               "src/favicon.ico",
