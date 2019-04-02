@@ -6,6 +6,11 @@ import * as L from 'leaflet';
   providedIn: 'root'
 })
 export class LeafletMapService {
+  zoom: number;
+  center: L.LatLng;
+  fitBounds: L.LatLngBounds;
+  baseLayers: L.TileLayer[];
+  map: L.Map;
   constructor() { }
   createMap() {
     const map = L.map('map').setView([37.52, 127], 12);
