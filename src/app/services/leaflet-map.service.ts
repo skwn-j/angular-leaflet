@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as LL from 'leaflet';
-const L = LL as any;
+import * as L from 'leaflet';
 
 @Injectable({
     providedIn: 'root'
@@ -20,4 +19,3 @@ export class LeafletMapService {
         return map;
     }
 }
-W

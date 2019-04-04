@@ -1,30 +1,45 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Injectable } from '@angular/core';
- 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Papa } from 'ngx-papaparse';
+
+interface RentalPlaceData {
+    title: string;
+    body: string;
+}
+
+
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root'
 })
-export class InMemoryDataService implements InMemoryDbService {
-  createDb() {
-    const heroes = [
-      { id: 11, name: 'Mr. Nice' },
-      { id: 12, name: 'Narco' },
-      { id: 13, name: 'Bombasto' },
-      { id: 14, name: 'Celeritas' },
-      { id: 15, name: 'Magneta' },
-      { id: 16, name: 'RubberMan' },
-      { id: 17, name: 'Dynama' },
-      { id: 18, name: 'Dr IQ' },
-      { id: 19, name: 'Magma' },
-      { id: 20, name: 'Tornado' }
-    ];
-    return {heroes};
-  }
- 
-  // 히어로 객체가 항상 id 프로퍼티를 갖도록 getId 메소드를 오버라이드 합니다.
-  // 히어로 목록이 비어있다면 이 메소드는 초기값(11)을 반환합니다.
-  // 히어로 목록이 비어있지 않으면 히어로 id의 최대값에 1을 더해서 반환합니다.
-  genId(heroes: Hero[]): number {
-    return heroes.length > 0 ? Math.max(...heroes.map(hero => hero.id)) + 1 : 11;
-  }
+export class LocalFileopenService {
+    url = 'http://localhost:4200/assets/seoul_bicycle/01_rental_place/rental_place.csv';
+    constructor(private http: HttpClient,
+                private papa: Papa) {
+
+    }
+    getRentalPlaceData() {
+        this.http.get(this.url, {responseType: 'text'}).subscribe(res => {
+            this.papa.parse(res, {
+                complete: (result) => {
+                    console.log('Parsed: ', result);
+                }
+            });
+        }
+        );
+    }
+    /*
+    private parseCSV(res: HttpResponse<any>) {
+        let csvData = 
+    }
+    private handleError(error: HttpErrorResponse) {
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        // tslint:disable-next-line: prefer-const
+        let errMsg = (error.message) ? error.message :
+          error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return errMsg;
+    }
+    */
 }
