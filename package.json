@@ -21,6 +21,7 @@
     "@angular/router": "~7.2.0",
     "@asymmetrik/ngx-leaflet": "^5.0.1",
     "@types/pixi.js": "^4.8.6",
+    "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^2.5.4",
     "csv-parser": "^2.2.0",
     "file-system": "^2.2.2",

@@ -19,6 +19,6 @@ export class AppComponent implements OnInit {
     //create map
     this.map = this.leafletMapService.createMap();
     this.showRentalPlaceService.showRentalPlace(this.map);
-    this.showRentalPlaceService.openRentalPlace();
+    //this.showRentalPlaceService.openRentalPlace();
   }
 }

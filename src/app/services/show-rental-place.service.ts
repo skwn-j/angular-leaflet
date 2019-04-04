@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
 import 'pixi.js';
 import 'leaflet-pixi-overlay';
-import 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +10,17 @@ export class ShowRentalPlaceService {
   loader: PIXI.loaders.Loader;
   text: string;
   constructor() { }
+  /*
   openRentalPlace() {
-    const csv = require('csv-parser');
-    const fs = require('fs');
-    const results = [];
-
-    fs.createReadStream('assets/seoul_bicycle/o1_rental_place/rental_place.csvs')
-      .pipe(csv())
-      .on('data', (data) => results.push(data))
-      .on('end', () => {
-        console.log(results);
-      });
+    let reader = new FileReader();
+    reader.readAsDataURL('http://localhost:4200');
+    reader.onload = e => {
+      this.text = reader.result;
+    }
+    reader.readAsText(file);
   }
 
-
+*/
 
   showRentalPlace(map: L.Map) {
     console.log('rental');
