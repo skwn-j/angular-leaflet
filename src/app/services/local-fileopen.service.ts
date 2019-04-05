@@ -11,12 +11,13 @@ declare let require: any;
 })
 export class LocalFileopenService {
     data: string[][];
-    url = 'http://localhost:4200/assets/seoul_bicycle/01_rental_place/rental_place.csv';
+    url: string;
     iconv = require('iconv-lite');
     jschardet = require('jschardet');
     constructor(private http: HttpClient, private papa: Papa,
                 private showRentalPlaceService: ShowRentalPlaceService) { }
-    async getRentalPlaceData(map) {
+    async openCsvData(url) {
+        this.url = url;
         const res = await this.http.get(this.url, { responseType: 'arraybuffer' }).toPromise();
         const utf8Res = this.iconv.decode(Buffer.from(res), 'euc-kr');
         this.papa.parse(utf8Res, {

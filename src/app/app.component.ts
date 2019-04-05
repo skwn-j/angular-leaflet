@@ -11,6 +11,7 @@ import * as L from 'leaflet';
 })
 export class AppComponent implements OnInit {
     map: L.map;
+    rentalPlaceUrl = 'http://localhost:4200/assets/seoul_bicycle/01_rental_place/rental_place.csv';
     constructor(private leafletMapService: LeafletMapService,
                 private showRentalPlaceService: ShowRentalPlaceService,
                 private localFileopenService: LocalFileopenService) {
@@ -20,18 +21,13 @@ export class AppComponent implements OnInit {
         console.log(result);
         this.showRentalPlaceService.showRentalPlace(this.map, result);
     }
+    failureCallback(error) {
+        console.log(error);
+    }
     ngOnInit() {
         // create map
         this.map = this.leafletMapService.createMap();
-        this.localFileopenService.getRentalPlaceData(this.map)
+        this.localFileopenService.openCsvData(this.rentalPlaceUrl)
             .then(this.successCallback);
-            /*
-        for (let rentalPlace of rentalPlaceData) {
-            let lat = +rentalPlace[5];
-            let lng = +rentalPlace[6];
-            this.showRentalPlaceService.showRentalPlace(this.map, [lat, lng]);
-        }
-        */
-        // this.showRentalPlaceService.openRentalPlace();
     }
 }
