@@ -52,7 +52,9 @@ export class ShowRentalPlaceService {
         }
 
         if (firstDraw || prevZoom !== zoom) {
+          console.log(scale)
           marker.scale.set(1 / scale);
+          console.log(marker.scale);
         }
 
         firstDraw = false;
