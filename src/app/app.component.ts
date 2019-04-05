@@ -20,8 +20,14 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         // create map
         this.map = this.leafletMapService.createMap();
-        this.showRentalPlaceService.showRentalPlace(this.map);
-        this.localFileopenService.getRentalPlaceData();
+        this.localFileopenService.getRentalPlaceData(this.map);
+        /*
+        for (let rentalPlace of rentalPlaceData) {
+            let lat = +rentalPlace[5];
+            let lng = +rentalPlace[6];
+            this.showRentalPlaceService.showRentalPlace(this.map, [lat, lng]);
+        }
+        */
         // this.showRentalPlaceService.openRentalPlace();
     }
 }

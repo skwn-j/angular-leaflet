@@ -22,13 +22,13 @@ export class ShowRentalPlaceService {
 
 */
 
-  showRentalPlace(map: L.Map) {
+  showRentalPlace(map: L.Map, latLng: number[]) {
     console.log('rental');
     this.loader = new PIXI.loaders.Loader();
     this.loader.add('marker', 'assets/img/marker.png');
     this.loader.load((loader, resources) => {
       let markerTexture = resources.marker.texture;
-      let markerLatLng = [37.52, 127];
+      let markerLatLng = latLng;
       let marker = new PIXI.Sprite(markerTexture);
       marker.anchor.set(0.5, 1);
 
@@ -44,7 +44,7 @@ export class ShowRentalPlaceService {
         let renderer = utils.getRenderer();
         let project = utils.latLngToLayerPoint;
         let scale = utils.getScale();
-        scale = scale * 10;
+        scale = scale * 30;
         if (firstDraw) {
           let markerCoords = project(markerLatLng);
           marker.x = markerCoords.x;
