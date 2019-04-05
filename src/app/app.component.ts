@@ -16,12 +16,16 @@ export class AppComponent implements OnInit {
                 private localFileopenService: LocalFileopenService) {
 
     }
-
+    successCallback(result) {
+        console.log(result);
+        this.showRentalPlaceService.showRentalPlace(this.map, result);
+    }
     ngOnInit() {
         // create map
         this.map = this.leafletMapService.createMap();
-        this.localFileopenService.getRentalPlaceData(this.map);
-        /*
+        this.localFileopenService.getRentalPlaceData(this.map)
+            .then(this.successCallback);
+            /*
         for (let rentalPlace of rentalPlaceData) {
             let lat = +rentalPlace[5];
             let lng = +rentalPlace[6];

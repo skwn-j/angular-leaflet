@@ -21,8 +21,8 @@ export class ShowRentalPlaceService {
   }
 
 */
-
-  showRentalPlace(map: L.Map, latLng: number[]) {
+  //add child for each marker
+  showRentalPlace(map: L.Map, rentalPlaceData: string[][]) {
     console.log('rental');
     this.loader = new PIXI.loaders.Loader();
     this.loader.add('marker', 'assets/img/marker.png');

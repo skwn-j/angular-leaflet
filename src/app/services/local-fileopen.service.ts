@@ -16,18 +16,14 @@ export class LocalFileopenService {
     jschardet = require('jschardet');
     constructor(private http: HttpClient, private papa: Papa,
                 private showRentalPlaceService: ShowRentalPlaceService) { }
-    getRentalPlaceData(map) {
-        this.http.get(this.url, { responseType: 'arraybuffer' }).subscribe(res => {
-            const utf8Res = this.iconv.decode(Buffer.from(res), 'euc-kr');
-            this.papa.parse(utf8Res, {
-                complete: (result) => {
-                    for (let rentalPlace of result.data) {
-                        let lat = +rentalPlace[5];
-                        let lng = +rentalPlace[6];
-                        this.showRentalPlaceService.showRentalPlace(map, [lat, lng]);
-                    }
-                }
-            });
+    async getRentalPlaceData(map) {
+        const res = await this.http.get(this.url, { responseType: 'arraybuffer' }).toPromise();
+        const utf8Res = this.iconv.decode(Buffer.from(res), 'euc-kr');
+        this.papa.parse(utf8Res, {
+            complete: (result) => {
+                this.data = result.data;
+            }
         });
+        return this.data;
     }
 }
