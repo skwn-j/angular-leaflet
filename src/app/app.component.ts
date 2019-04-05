@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
                 private localFileopenService: LocalFileopenService) {
 
     }
-    successCallback(result) {
+    successCallback(result: string[][]) {
         console.log(result);
         this.showRentalPlaceService.showRentalPlace(this.map, result);
     }
