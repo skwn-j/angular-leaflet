@@ -13,21 +13,10 @@ export class AppComponent implements OnInit {
     map: L.map;
     rentalPlaceUrl = 'http://localhost:4200/assets/seoul_bicycle/01_rental_place/rental_place.csv';
     constructor(private leafletMapService: LeafletMapService,
-                private showRentalPlaceService: ShowRentalPlaceService,
-                private localFileopenService: LocalFileopenService) {
-
-    }
-    successCallback(result: string[][]) {
-        console.log(result);
-        this.showRentalPlaceService.showRentalPlace(this.map, result);
-    }
-    failureCallback(error) {
-        console.log(error);
-    }
+                private showRentalPlaceService: ShowRentalPlaceService) {}
     ngOnInit() {
         // create map
         this.map = this.leafletMapService.createMap();
-        this.localFileopenService.openCsvData(this.rentalPlaceUrl)
-            .then(this.successCallback);
+        //this.map = this.leafletMapService.showRentalPlaceOnMap();
     }
 }

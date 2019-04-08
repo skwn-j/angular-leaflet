@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Papa } from 'ngx-papaparse';
 import { Buffer } from 'buffer';
-import { ShowRentalPlaceService } from './show-rental-place.service';
 
 declare let require: any;
 
@@ -14,8 +13,7 @@ export class LocalFileopenService {
     url: string;
     iconv = require('iconv-lite');
     jschardet = require('jschardet');
-    constructor(private http: HttpClient, private papa: Papa,
-                private showRentalPlaceService: ShowRentalPlaceService) { }
+    constructor(private http: HttpClient, private papa: Papa) { }
     async openCsvData(url) {
         this.url = url;
         const res = await this.http.get(this.url, { responseType: 'arraybuffer' }).toPromise();
