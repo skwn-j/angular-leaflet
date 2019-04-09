@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { PapaParseModule } from 'ngx-papaparse';
 import { RentalPlaceInfoComponent } from './components/rental-place-info/rental-place-info.component';
+import { BicycleMapComponent } from './components/bicycle-map/bicycle-map.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         RentalPlaceInfoComponent,
+        BicycleMapComponent,
     ],
     imports: [
         BrowserModule,

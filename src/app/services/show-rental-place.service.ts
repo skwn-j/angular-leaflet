@@ -9,7 +9,7 @@ import 'leaflet-pixi-overlay';
 export class ShowRentalPlaceService {
     text: string;
     constructor() { }
-    
+
     //add child for each marker
     showRentalPlace(map: L.Map, rentalPlaceData: string[][]) {
         console.log('rental');
@@ -18,9 +18,9 @@ export class ShowRentalPlaceService {
         loader.load((loader, resources) => {
             let markerTexture = resources.marker.texture;
             let markerSprites = [];
-           
+
             let pixiContainer = new PIXI.Container();
-            
+
 
             let firstDraw = true;
             let prevZoom;
@@ -45,12 +45,12 @@ export class ShowRentalPlaceService {
                 }
 
                 if (firstDraw || prevZoom !== zoom) {
-                    markerSprites.forEach(marker=> {
+                    markerSprites.forEach(marker => {
                         if (firstDraw) {
                             marker.scale.set(1 / scale);
                         } else {
                             marker.currentScale = marker.scale.x;
-                            marker.targetScale =  1 / scale;
+                            marker.targetScale = 1 / scale;
                         }
                     });
                 }
