@@ -4,10 +4,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { PapaParseModule } from 'ngx-papaparse';
+import { RentalPlaceInfoComponent } from './components/rental-place-info/rental-place-info.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        RentalPlaceInfoComponent,
     ],
     imports: [
         BrowserModule,

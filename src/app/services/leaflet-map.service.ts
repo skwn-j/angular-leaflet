@@ -22,25 +22,14 @@ export class LeafletMapService {
         return this.map;
     }
 
-    loadSuccess(rentalPlaceData: string[][]) {
-        console.log('rental');
-        console.log(this);
-        console.log(this.map);
-
-    }
-
-    loadFailed(error: any) {
-        console.log(error);
-    }
-
-
     showRentalPlaceOnMap() {
         console.log(this.map);
-        let rentalPlaceUrl = 'http://localhost:4200/assets/seoul_bicycle/01_rental_place/rental_place.csv';
-        this.map = this.localFileopenService.openCsvData(rentalPlaceUrl).then((rentalPlaceData: string[][]) => {
+        let rentalPlaceUrl = 'http://localhost:4200/assets/seoul_bicycle/01_rental_place/station.csv';
+        this.localFileopenService.openCsvData(rentalPlaceUrl).then((rentalPlaceData: string[][]) => {
+            console.log(rentalPlaceData);
             let loader = new PIXI.loaders.Loader();
             loader.add('marker', 'assets/img/marker.png');
-            loader.load(function (loader, resources) {
+            loader.load((loader, resources) => {
                 let markerTexture = resources.marker.texture;
                 let markerSprites = [];
                 let pixiContainer = new PIXI.Container();
@@ -56,13 +45,15 @@ export class LeafletMapService {
                     scale = scale * 30;
                     if (firstDraw) {
                         rentalPlaceData.forEach(place => {
-                            let marker = new PIXI.Sprite(markerTexture);
-                            let markerCoords = project([+place[5], +place[6]]);
-                            marker.x = markerCoords.x;
-                            marker.y = markerCoords.y;
-                            marker.anchor.set(0.5, 0.5);
-                            container.addChild(marker);
-                            markerSprites.push(marker);
+                            if (place.length > 6) {
+                                let marker = new PIXI.Sprite(markerTexture);
+                                let markerCoords = project([+place[5], +place[6]]);
+                                marker.x = markerCoords.x;
+                                marker.y = markerCoords.y;
+                                marker.anchor.set(0.5, 0.5);
+                                container.addChild(marker);
+                                markerSprites.push(marker);
+                            }
                         });
                     }
 
