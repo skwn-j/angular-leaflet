@@ -15,6 +15,7 @@ export class LeafletMapService {
 
     createMap() {
         this.map = L.map('map').setView([37.52, 127], 12);
+        this.map.doubleClickZoom.disable();
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);
@@ -44,6 +45,7 @@ export class LeafletMapService {
                     let scale = utils.getScale();
                     scale = scale * 30;
                     if (firstDraw) {
+                        prevZoom = zoom;
                         rentalPlaceData.forEach(place => {
                             if (place.length > 6) {
                                 let marker = new PIXI.Sprite(markerTexture);
